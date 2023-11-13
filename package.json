@@ -22,5 +22,18 @@
   },
   "dependencies": {
     "uuid": "^9.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jansevska/typescript_cart.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "Shopping",
+    "Cart"
+  ],
+  "bugs": {
+    "url": "https://github.com/Jansevska/typescript_cart/issues"
+  },
+  "homepage": "https://github.com/Jansevska/typescript_cart#readme"
 }

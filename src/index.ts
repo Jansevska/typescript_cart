@@ -9,6 +9,7 @@ class User{
         //     document.getElementById("shop").style.visibility = "visible";
         //     return new User(name, age);
         // }
+        console.log(new User(name.value, age.value));
         return new User(name.value, age.value);
     }
 
@@ -109,6 +110,7 @@ class Item {
     public set id(value: string) {
         this._id = value;
     }
+}    
 
 
     class Shop {
@@ -134,6 +136,7 @@ class Item {
 
             let item6 = new Item('Button Shirt', 44.99, "Men's Black Button Shirt");
             this.items.push(item6);
+
         }
 
         public get items(): Item[] {
@@ -155,7 +158,3 @@ document.getElementById('addUser')!.addEventListener('click', (e:Event)=> Shop.l
 
 
 // Driver Code
-let myShop = new Shop();
-let myUser = new User('Alice', 68);
-console.log(myShop)
-console.log(myUser)
