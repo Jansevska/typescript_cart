@@ -1,16 +1,19 @@
 import { v4 as uuidv4 } from "uuid";
 
+// optional way of writting the code:
+// (<HTMLInputElement>document.getElementById("name")).value
+
 class User{
     static createUser(){
-        const name = document.getElementById("nameInput") as HTMLFormElement;
-        const age = document.getElementById('ageInput') as HTMLFormElement;
-        // if (name.length > 0 && age > 0) {
-        //     document.getElementById("cart-div").style.visibility = "visible";
-        //     document.getElementById("shop").style.visibility = "visible";
-        //     return new User(name, age);
-        // }
-        console.log(new User(name.value, age.value));
-        return new User(name.value, age.value);
+        const name = (document.getElementById("nameInput") as HTMLFormElement).value;
+        const age = (document.getElementById('ageInput') as HTMLFormElement).value;
+        if (name.length > 0 && age) {
+            document.getElementById("shop") as HTMLElement;
+            document.getElementById("cart-div") as HTMLElement;
+            console.log(new User(name, parseInt(age)));
+            return new User(name, parseInt(age));
+        }
+        return;
     }
 
     constructor(
@@ -47,10 +50,12 @@ class User{
 
     public addToCart(item:Item):void{
         this.cart.push(item);
+        Shop.updateCart();
     }
 
     public removeFromCart(itemToRemove:Item):void{
         this.cart = this.cart.filter( item => item.id !== itemToRemove.id);
+        Shop.updateCart();
     }
 
     public removeQuantityFromCart(itemToRemove:Item, quantity:number):void{
@@ -58,6 +63,7 @@ class User{
             let index = this.cart.findIndex(item => item.id === itemToRemove.id);
             this.cart.splice(index, 1);
         }
+        Shop.updateCart();
     }
 
     public getCartTotal():number{
@@ -74,6 +80,53 @@ class User{
             console.log(`${item.name}: $${item.price}`)
         }
         console.log(`Total: $${this.getCartTotal()}`)
+    }
+
+    cartElement() {
+        const cartEle = document.createElement("table");
+        for (const item of new Set(this.cart)) {
+
+            const rmButton = document.createElement("button");
+            rmButton.id = `${item.id}-rm1`;
+            rmButton.classList.add("btn", "btn-danger");
+            rmButton.onclick = () => {
+            Shop.myUser!.removeQuantityFromCart(item, 1);
+            };
+            rmButton.innerText = "-1";
+
+            const rmAllButton = document.createElement("button");
+            rmAllButton.id = `${item.id}-rmall`;
+            rmAllButton.innerText = "delete";
+            rmAllButton.classList.add("btn", "btn-dark-red", "btn-danger");
+            rmAllButton.onclick = () => {
+            Shop.myUser!.removeFromCart(item);
+            };
+
+            cartEle.innerHTML += `<tr><td><strong>${item.name}</strong></td><td>$${item.price}</td>
+                <td>${this.cart.filter((i) => i.id === item.id).length}</td>
+                <td>${rmAllButton.outerHTML}</td>
+                <td>${rmButton.outerHTML}</td>
+                </tr>`;
+        }
+        cartEle.innerHTML += `<tr id="totalbar"><td><strong>${"Total:"}</strong></td><td>$${this.getCartTotal().toFixed(2)}</td></tr>`;
+        return cartEle;
+    }
+
+    addRemoveListeners() {
+        for (const item of new Set(this.cart)) {
+            const removeOneButton = document.getElementById(`${item.id}-rm1`) || null;
+            if (removeOneButton) {
+                removeOneButton.onclick = () => {
+                    Shop.myUser!.removeQuantityFromCart(item, 1);
+                };
+            }
+            const removeAllButton = document.getElementById(`${item.id}-rmall`) || null;
+            if (removeAllButton) {
+                removeAllButton.onclick = () => {
+                    Shop.myUser!.removeFromCart(item);
+                };
+            }
+        }
     }
 }
 
@@ -110,12 +163,32 @@ class Item {
     public set id(value: string) {
         this._id = value;
     }
+
+    itemElement() {
+        const itemBox = document.createElement("div");
+        itemBox.innerHTML = `<div class="card item-card" style="width: 18rem; height: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${this.name}</h5>
+                <p class="card-text">${this._description}</p>
+                <p class="card-text">$${this.price}</p>
+                <button class="btn btn-primary" id="addToCart">Add To Cart</button>
+                </div>
+        </div>`;
+
+        // create child here with a for loop ?
+
+        const addToCartButton = itemBox.querySelector("#addToCart") as HTMLButtonElement;
+        addToCartButton.onclick = () => {
+            Shop.myUser!.addToCart(this);
+        };
+        return itemBox;
+    }
 }    
 
 
     class Shop {
-        static myUser:User;
-        
+        static myUser:User|undefined
+
         constructor(
             private _items: Item[] = []
         ){
@@ -137,18 +210,45 @@ class Item {
             let item6 = new Item('Button Shirt', 44.99, "Men's Black Button Shirt");
             this.items.push(item6);
 
+            this.showItems();
+
+            Shop.myUser!.cart = [];
+
+        }
+        // child of Shop or Item ?
+
+        showItems(){
+            for (let item of this.items) {
+                (document.getElementById("shop") as HTMLElement).appendChild(item.itemElement());
+            }
         }
 
+        static updateCart() {
+            const shopdiv = document.getElementById("cartdiv") as HTMLElement;
+            if (Shop.myUser!.cart.length <= 0) {
+                shopdiv.innerHTML = `<H2 id="cart-header">My Cart</H2>YOUR CART IS EMPTY`;
+            }
+            else {
+                shopdiv.replaceChildren(Shop.myUser!.cartElement());
+                shopdiv.innerHTML = ('<H2 id="cart-header">My Cart</H2>' + shopdiv.innerHTML);
+                Shop.myUser?.addRemoveListeners();
+            }
+        }
+        
         public get items(): Item[] {
             return this._items;
         }
         public set items(value: Item[]) {
             this._items = value;
         }
-
+        
         static loginUser(e:Event) {
             e.preventDefault();
             Shop.myUser = User.createUser();
+            if (Shop.myUser) {
+                document.getElementById("login")?.remove();
+                new Shop();
+            }
         }
 }
 
