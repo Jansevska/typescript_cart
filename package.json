@@ -1,0 +1,26 @@
+{
+  "name": "typescript_cart",
+  "version": "1.0.0",
+  "description": "typescript shopping cart",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run bundle && npm-run-all --parallel watch serve",
+    "bundle": "webpack",
+    "watch": "webpack --watch",
+    "serve": "cd dist && live-server"
+  },
+  "author": "Emili Janchevis",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/uuid": "^9.0.7",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}

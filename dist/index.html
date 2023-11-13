@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar mb-5">
+        <div class="nav">
+
+        </div>
+        <ul class="links-container">
+            <li class="link-item"><a href="#" class="link" name="home">home</a></li>
+            <li class="link-item"><a href="#" class="link" name="cart">cart</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <!-- userLogin section is-visible -->
+        <div class="login" id="home">
+            <div class="userLogin col-12 text-center mt-5 mb-5">
+                <h2>Please Login Your Name and Age to Start Shopping</h2>
+        
+                <form action="" >
+                    <input type="text" class="form-box-name" name="userName" id="nameInput" placeholder="name">
+                    <input type="text" clas="form-box-age" name="userAge" id="ageInput" placeholder="age">
+                    <input type="submit" id="addUser" class="form-btn" value="Log In">
+                    <!-- <button type="submit" class="form-btn">Login</button> -->
+                </form>
+        
+                <table id="userDisplay"></table>
+        </div>
+
+        <!-- cart section is-invisible-->
+        <div class="cart-section">
+            <div id="shop" style="visibility: visible;"></div>
+            <h2 id="cart-header">My Cart</h2>
+            <div class="content" id="cart-div">
+
+                <table id="itemDisplay"></table>
+
+            </div>
+        </div>
+    </header>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src='bundle.js'></script>
+</body>
+</html>
