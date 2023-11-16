@@ -373,7 +373,6 @@ class Item {
                 <button class="btn btn-primary" id="addToCart">Add To Cart</button>
                 </div>
         </div>`;
-        // create child here with a for loop ?
         const addToCartButton = itemBox.querySelector("#addToCart");
         addToCartButton.onclick = () => {
             Shop.myUser.addToCart(this);
@@ -399,7 +398,6 @@ class Shop {
         this.showItems();
         Shop.myUser.cart = [];
     }
-    // child of Shop or Item ?
     showItems() {
         for (let item of this.items) {
             document.getElementById("shop").appendChild(item.itemElement());
@@ -407,7 +405,7 @@ class Shop {
     }
     static updateCart() {
         var _a;
-        const shopdiv = document.getElementById("cartdiv");
+        const shopdiv = document.getElementById("cart-div");
         if (Shop.myUser.cart.length <= 0) {
             shopdiv.innerHTML = `<H2 id="cart-header">My Cart</H2>YOUR CART IS EMPTY`;
         }

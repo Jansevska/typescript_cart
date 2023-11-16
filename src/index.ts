@@ -175,8 +175,6 @@ class Item {
                 </div>
         </div>`;
 
-        // create child here with a for loop ?
-
         const addToCartButton = itemBox.querySelector("#addToCart") as HTMLButtonElement;
         addToCartButton.onclick = () => {
             Shop.myUser!.addToCart(this);
@@ -215,7 +213,6 @@ class Item {
             Shop.myUser!.cart = [];
 
         }
-        // child of Shop or Item ?
 
         showItems(){
             for (let item of this.items) {
@@ -224,7 +221,7 @@ class Item {
         }
 
         static updateCart() {
-            const shopdiv = document.getElementById("cartdiv") as HTMLElement;
+            const shopdiv = document.getElementById("cart-div") as HTMLElement;
             if (Shop.myUser!.cart.length <= 0) {
                 shopdiv.innerHTML = `<H2 id="cart-header">My Cart</H2>YOUR CART IS EMPTY`;
             }
