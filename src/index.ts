@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
+
 // optional way of writting the code:
 // (<HTMLInputElement>document.getElementById("name")).value
 
@@ -10,7 +11,6 @@ class User{
         if (name.length > 0 && age) {
             document.getElementById("shop") as HTMLElement;
             document.getElementById("cart-div") as HTMLElement;
-            console.log(new User(name, parseInt(age)));
             return new User(name, parseInt(age));
         }
         return;
@@ -172,7 +172,7 @@ class Item {
                 <p class="card-text">${this._description}</p>
                 <p class="card-text">$${this.price}</p>
                 <button class="btn btn-primary" id="addToCart">Add To Cart</button>
-                </div>
+            </div>
         </div>`;
 
         const addToCartButton = itemBox.querySelector("#addToCart") as HTMLButtonElement;

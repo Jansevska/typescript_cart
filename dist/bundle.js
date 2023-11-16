@@ -225,7 +225,6 @@ class User {
         if (name.length > 0 && age) {
             document.getElementById("shop");
             document.getElementById("cart-div");
-            console.log(new User(name, parseInt(age)));
             return new User(name, parseInt(age));
         }
         return;
@@ -371,7 +370,7 @@ class Item {
                 <p class="card-text">${this._description}</p>
                 <p class="card-text">$${this.price}</p>
                 <button class="btn btn-primary" id="addToCart">Add To Cart</button>
-                </div>
+            </div>
         </div>`;
         const addToCartButton = itemBox.querySelector("#addToCart");
         addToCartButton.onclick = () => {

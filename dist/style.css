@@ -1,3 +1,5 @@
+
+
 *{
     margin: 0;
     padding: 0;
@@ -48,7 +50,7 @@
 }
 
 .form-box-name{
-    width: 10%;
+    width: 20%;
     height: 40px;
     margin-top: 20px;
     padding: 10px;
@@ -61,7 +63,7 @@
 }
 
 #ageInput{
-    width: 5%;
+    width: 10%;
     height: 40px;
     padding: 10px;
     border-radius: 10px;
@@ -79,7 +81,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    background: #383838;
+    background: #484646;
     color: #fff;
     text-transform: capitalize;
     font-size: 15px;
@@ -88,17 +90,60 @@
 
 .shop-cart-section{
     visibility: hidden;
-}
-
-.product{
-    width: 70%;
+    margin-left: 5%;
     display: flex;
 }
 
-.cart{
-    margin-top: 20px;
+#shop{
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    width: 60%;
+    height: 650px;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    align-content: space-around;
+
+}
+
+.card-body{
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.cart-section{
+    width: 30%;
+    border: color 2px #484646;
+    float: right;
+    margin-right: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: larger;
+}
+
+.cart-div{
     width: 30%;
     display: flex;
-    align-items: center;
-    text-align: center;
+    justify-content: space-around;
+    align-content: space-around;
+    margin: 5px;
+    padding: 10px;
+}
+
+.cart-items{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#itemDisplay{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    padding: 10px;
 }
